@@ -21,6 +21,8 @@
         ];
 
         public function boot() {
+            parent::boot();
+            
             Statamic::booted(function () {
                 // Register settings routes
                 $this->registerCpRoutes(function () {
@@ -44,7 +46,5 @@
                         ->icon('alert');
                 });
             });
-
-            parent::boot();
         }
     }
