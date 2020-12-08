@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind screens;
+@tailwind utilities;
+
+.cookie-notice-bg {
+    @apply fixed inset-0 z-50 pointer-events-none;
+}
+
+.cookie-notice-pos {
+    @apply relative w-full h-screen inset-0;
+}
+
+.cookie-notice-container {
+    @apply absolute top-1/2 left-1/2 p-6 max-w-full;
+    @apply transform scale-100 -translate-x-1/2 -translate-y-1/2;
+    @apply overflow-y-auto pointer-events-auto;
+    @apply shadow-lg bg-white;
+    width: 90%;
+
+    @screen lg {
+        @apply max-w-lg inset-auto left-8 bottom-8 transform-none;
+    }
+
+    h2 {
+        @apply text-lg;
+    }
+
+    p {
+        @apply text-sm;
+    }
+
+    .title-spacer, .text-spacer, .button-spacer {
+        @apply py-2;
+    }
+
+    .button-container {
+        @apply flex flex-col justify-center text-center;
+
+        @screen lg {
+            @apply block;
+        }
+
+        a#cookie-notice-button-all {
+            @apply button-primary;
+        }
+
+        a#cookie-notice-button-selected {
+            @apply underline pt-4;
+
+            @screen lg {
+                @apply pt-0 pl-2;
+            }
+        }
+    }
+}
+
+/*
+.tooltip {
+    @apply bg-primary rounded-full w-4 h-4 font-bold text-white text-xs ml-2;
+
+    &:hover .tooltip-content {
+        display: block;
+    }
+}
+
+.tooltip-content {
+    @apply bg-white p-2 rounded-md;
+}
+ */

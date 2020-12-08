@@ -1,0 +1,71 @@
+sections:
+  main:
+    display: Hauptteil
+    fields:
+      - handle: title
+        field:
+          type: text
+          required: true
+      - handle: cookie-notice-title
+        field:
+          placeholder: Cookie-Einstellungen
+          input_type: text
+          antlers: false
+          display: 'Titel des Modals'
+          type: text
+          icon: text
+          instructions: 'Geben Sie dem Cookie-Hinweis einen Titel.'
+          localizable: true
+          listable: hidden
+      - handle: cookie-notice-text
+        field:
+          antlers: false
+          display: 'Text des Modals'
+          type: textarea
+          icon: textarea
+          instructions: 'Beschreiben Sie hier kurz was die Cookies auf der Seite tun.'
+          placeholder: 'Wir verwenden Cookies, um Ihnen auf unserer Website ein optimales Erlebnis zu bieten.'
+          localizable: true
+          listable: hidden
+      - handle: section-consent-classes
+        field:
+          display: Zustimmungsklassen
+          type: section
+          icon: section
+          instructions: 'Hier können die Klassen bearbeitet werden, denen einzeln zugestimmt werden muss.'
+          localizable: true
+          listable: hidden
+      - handle: cookie-consent-classes
+        field:
+          fields:
+            - handle: cookie-consent-class-slug
+              field:
+                input_type: text
+                antlers: false
+                display: Slug
+                type: text
+                icon: text
+                width: 33
+                listable: hidden
+            - handle: cookie-consent-class-title
+              field:
+                input_type: text
+                antlers: false
+                display: Bezeichnung
+                type: text
+                icon: text
+                width: 66
+                listable: hidden
+            - handle: cookie-consent-class-description
+              field:
+                antlers: false
+                display: Beschreibung
+                type: textarea
+                icon: textarea
+                listable: hidden
+          mode: table
+          reorderable: true
+          display: Zustimmungsklassen
+          type: grid
+          icon: grid
+          listable: hidden
