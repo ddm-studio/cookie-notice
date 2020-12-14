@@ -1,7 +1,7 @@
 <?php
     declare(strict_types=1);
 
-    namespace DDM\DDMCookieNotice\Http\Controllers;
+    namespace DDM\CookieNotice\Http\Controllers;
 
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;

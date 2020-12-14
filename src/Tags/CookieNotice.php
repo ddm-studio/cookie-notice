@@ -1,7 +1,7 @@
 <?php
     declare(strict_types=1);
 
-    namespace DDM\DDMCookieNotice\Tags;
+    namespace DDM\CookieNotice\Tags;
 
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;

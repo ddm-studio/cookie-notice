@@ -1,7 +1,9 @@
+/*
 @tailwind base;
 @tailwind components;
 @tailwind screens;
 @tailwind utilities;
+*/
 
 .cookie-notice-bg {
     @apply fixed inset-0 z-50 pointer-events-none;
@@ -18,10 +20,6 @@
     @apply shadow-lg bg-white;
     width: 90%;
 
-    @screen lg {
-        @apply max-w-lg inset-auto left-8 bottom-8 transform-none;
-    }
-
     h2 {
         @apply text-lg;
     }
@@ -34,8 +32,12 @@
         @apply py-2;
     }
 
+    .checkbox-spacer {
+        @apply py-1;
+    }
+
     .button-container {
-        @apply flex flex-col justify-center text-center;
+        @apply flex flex-col justify-start text-center;
 
         @screen lg {
             @apply block;
@@ -51,6 +53,22 @@
             @screen lg {
                 @apply pt-0 pl-2;
             }
+        }
+    }
+
+    @screen md {
+        @apply max-w-md top-auto bottom-8 translate-y-0;
+    }
+
+    @screen lg {
+        @apply max-w-lg inset-auto left-8 bottom-8 transform-none;
+
+        h2 {
+            @apply text-xl;
+        }
+
+        p {
+            @apply text-base;
         }
     }
 }

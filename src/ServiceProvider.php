@@ -1,9 +1,9 @@
 <?php
     declare(strict_types=1);
 
-    namespace DDM\DDMCookieNotice;
+    namespace DDM\CookieNotice;
 
-    use DDM\DDMCookieNotice\Tags\CookieNotice;
+    use DDM\CookieNotice\Tags\CookieNotice;
     use Illuminate\Support\Facades\Route;
     use Statamic\Facades\CP\Nav;
     use Statamic\Providers\AddonServiceProvider;

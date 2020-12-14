@@ -1,5 +1,6 @@
 {
     "name": "ddm-studio/ddm-cookie-notice",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "Daniel Kral",
@@ -10,20 +11,23 @@
     ],
     "autoload": {
         "psr-4": {
-            "DDM\\DDMCookieNotice\\": "src"
+            "DDM\\CookieNotice\\": "src"
         }
     },
     "extra": {
         "statamic": {
             "name": "Cookie Consent Tool",
-            "description": "Example addon"
+            "description": "Cookie Consent Tool for DDM pages."
         },
         "laravel": {
             "providers": [
-                "DDM\\DDMCookieNotice\\ServiceProvider"
+                "DDM\\CookieNotice\\ServiceProvider"
             ]
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": "^7.3.4",
+        "statamic/cms": "^3.0.0"
+    }
 }
