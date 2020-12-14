@@ -28,8 +28,8 @@
                 // Register settings routes
                 $this->registerCpRoutes(function () {
                     Route::prefix('ddm-studio/cookie-notice/')->name('ddm-studio.cookie-notice.')->group(function () {
-                    	Route::get('/', [SettingsController::class, 'index']);
-                    	Route::post('/', [SettingsController::class, 'update']);
+                    	Route::get('/', [SettingsController::class, 'index'])->name('index');
+                    	Route::post('/', [SettingsController::class, 'update'])->name('update');
                     });
                 });
 
