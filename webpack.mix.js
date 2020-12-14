@@ -11,6 +11,14 @@ let mix = require("laravel-mix");
  |
  */
 
+mix.options({
+	terser: {
+		terserOptions: {
+			keep_fnames: true
+		}
+	}
+});
+
 mix.js("resources/js/cookie-notice.js", "resources/dist/js/cookie-notice.min.js");
 
 // mix.postCss('resources/css/ddm-cookie-notice.css', 'resources/dist/css', [

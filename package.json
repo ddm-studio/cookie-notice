@@ -1,6 +1,6 @@
 {
     "name": "ddm-cookie-notice",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -16,5 +16,8 @@
         "js-cookie": "^2.2.1",
         "laravel-mix": "^5.0.4",
         "tailwindcss": "^1.4.6"
+    },
+    "devDependencies": {
+        "vue-template-compiler": "^2.6.12"
     }
 }
