@@ -1,6 +1,6 @@
 {
     "name": "ddm-studio/cookie-notice",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "authors": [
         {
             "name": "Daniel Kral",
@@ -29,5 +29,10 @@
     "require": {
         "php": "^7.3.4",
         "statamic/cms": "^3.0.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php please vendor:publish --tag=ddm-cookie-notice --force"
+        ]
     }
 }

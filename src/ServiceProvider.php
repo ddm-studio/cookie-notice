@@ -34,9 +34,12 @@
                 });
 
                 $this->publishes([
-                    __DIR__ . '/../resources/dist/js' => public_path('/vendor/ddm-studio/cookie-notice/js'),
-                    __DIR__ . '/../resources/css' => resource_path('css/')
+                    __DIR__ . '/../resources/dist/js' => public_path('/vendor/ddm-studio/cookie-notice/js')
                 ], 'ddm-cookie-notice');
+
+                $this->publishes([
+	                __DIR__ . '/../resources/css' => resource_path('css/')
+                ], 'ddm-cookie-notice-css');
 
                 $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'cookie-notice');
 

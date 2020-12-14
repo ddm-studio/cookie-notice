@@ -23,7 +23,9 @@
 		</div>
 	</div>
 </div>
-<!--<script src="/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js"></script>-->
+{{ if cookie-notice-inline-script }}
+<script src="/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js"></script>
+{{ /if }}
 {{ else }}
 <div class="cookie-notice-disabled" style="display: none;"></div>
 {{ /if }}
