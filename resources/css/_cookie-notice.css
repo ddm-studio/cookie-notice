@@ -40,7 +40,7 @@
         @apply flex flex-col justify-start text-center;
 
         @screen lg {
-            @apply block;
+            @apply block justify-start text-left;
         }
 
         a#cookie-notice-button-all {

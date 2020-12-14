@@ -3,6 +3,7 @@
 
     namespace DDM\CookieNotice;
 
+    use DDM\CookieNotice\Http\Controllers\SettingsController;
     use DDM\CookieNotice\Tags\CookieNotice;
     use Illuminate\Support\Facades\Route;
     use Statamic\Facades\CP\Nav;
@@ -27,8 +28,8 @@
                 // Register settings routes
                 $this->registerCpRoutes(function () {
                     Route::prefix('ddm-studio/cookie-notice/')->name('ddm-studio.cookie-notice.')->group(function () {
-                        Route::get('/', 'SettingsController@index')->name('index');
-                        Route::post('/', 'SettingsController@update')->name('update');
+                    	Route::get('/', [SettingsController::class, 'index']);
+                    	Route::post('/', [SettingsController::class, 'update']);
                     });
                 });
 
