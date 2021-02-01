@@ -181,7 +181,6 @@
 					                        'handle' => 'consent-classes',
 					                        'field' => [
 						                        'display' => 'Notwendige Zustimmungsklassen',
-						                        'instructions' => 'Geben Sie die zu akzeptierenden Zustimmungsklassen an.',
 						                        'type' => 'text',
 						                        'icon' => 'text',
 						                        'input_type' => 'text',
@@ -212,6 +211,7 @@
 						                        'instructions' => 'Laden Sie hier ein Hintergrundbild hoch, um dem User zu zeigen, warum er die Cookies akzeptieren soll.',
 						                        'type' => 'assets',
 						                        'icon' => 'assets',
+						                        'mode' => 'grid',
 						                        'max_files' => 1,
 						                        'allow_uploads' => true
 					                        ],
