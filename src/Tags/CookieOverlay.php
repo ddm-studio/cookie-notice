@@ -18,19 +18,37 @@
 	class CookieOverlay extends Tags {
 
 		/**
-		 * @param null $consentOverlay
+		 * @param $slug
 		 *
 		 * @return Application|Factory|View
 		 */
-		public function index($consentOverlay) {
-			$consentOverlay = $consentOverlay ?? $this->params->get('consentOverlay');
+		public function index(string $slug = null) {
+			$slug = $slug ?? $this->params->get('slug');
 
 			$locale = Site::current()->locale();
 
-			$blabla = collect(YAML::file(base_path('content/cookie-notice-settings_' . $locale . '.yaml'))->parse());
+			$cookieOverlays = YAML::file(base_path('content/cookie-notice-settings_' . $locale . '.yaml'))->parse()['cookie-overlays'];
 
-			var_dump($blabla);
+			$overlayData = $this->getOverlayData($slug, $cookieOverlays);
 
-			return view('cookie-notice::cookie-overlay', $blabla);
+			if (is_array($overlayData)) {
+				return view('cookie-notice::cookie-overlay', collect($overlayData));
+			}
+		}
+
+		/**
+		 * @param       $slug
+		 * @param array $haystack
+		 *
+		 * @return false|array
+		 */
+		private function getOverlayData($slug, array $haystack) {
+			foreach ($haystack as $needle) {
+				if ($needle['slug'] === $slug) {
+					return $needle;
+				}
+			}
+
+			return false;
 		}
 	}

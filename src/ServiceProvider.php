@@ -5,6 +5,7 @@
 
     use DDM\CookieNotice\Http\Controllers\SettingsController;
     use DDM\CookieNotice\Tags\CookieNotice;
+    use DDM\CookieNotice\Tags\CookieOverlay;
     use Illuminate\Support\Facades\Route;
     use Statamic\Facades\CP\Nav;
     use Statamic\Providers\AddonServiceProvider;
@@ -18,12 +19,13 @@
     class ServiceProvider extends AddonServiceProvider {
 
         protected $tags = [
-            CookieNotice::class
+            CookieNotice::class,
+	        CookieOverlay::class
         ];
 
         public function boot() {
             parent::boot();
-            
+
             Statamic::booted(function () {
                 // Register settings routes
                 $this->registerCpRoutes(function () {
