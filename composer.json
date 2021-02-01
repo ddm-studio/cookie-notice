@@ -29,10 +29,5 @@
     "require": {
         "php": "^7.3.4",
         "statamic/cms": "^3.0.0"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "php please vendor:publish --tag=ddm-cookie-notice --force"
-        ]
     }
 }
