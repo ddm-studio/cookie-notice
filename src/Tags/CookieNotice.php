@@ -37,8 +37,6 @@
         public function hasConsent($consentClass = null): bool {
             $consentClass = $consentClass ?? $this->params->get('consentClass') ?? 'showed';
 
-            var_dump($_COOKIE['cookie-consent-' . $consentClass] === 'true');
-
             if ($cookieConsent = $_COOKIE['cookie-consent-' . $consentClass])
                 return $cookieConsent === 'true';
             else
