@@ -164,65 +164,67 @@
                                 ],
                             ],
 	                        7 => [
-	                        	'handle' => 'cookie-consent-overlays',
+		                        'handle' => 'cookie-overlays',
 		                        'field' => [
-		                        	0 => [
-				                        'handle' => 'slug',
-				                        'field' => [
-					                        'display' => 'Slug',
-					                        'type' => 'text',
-					                        'icon' => 'text',
-					                        'input_type' => 'text',
-					                        'width' => 25
+			                        'fields' => [
+				                        0 => [
+					                        'handle' => 'slug',
+					                        'field' => [
+						                        'display' => 'Slug',
+						                        'type' => 'text',
+						                        'icon' => 'text',
+						                        'input_type' => 'text',
+						                        'width' => 25
+					                        ],
+				                        ],
+				                        1 => [
+					                        'handle' => 'consent-classes',
+					                        'field' => [
+						                        'display' => 'Notwendige Zustimmungsklassen',
+						                        'instructions' => 'Geben Sie die zu akzeptierenden Zustimmungsklassen an.',
+						                        'type' => 'text',
+						                        'icon' => 'text',
+						                        'input_type' => 'text',
+						                        'width' => 75
+					                        ],
+				                        ],
+				                        2 => [
+					                        'handle' => 'title',
+					                        'field' => [
+						                        'display' => 'Bezeichnung',
+						                        'type' => 'text',
+						                        'icon' => 'text',
+						                        'input_type' => 'text'
+					                        ]
+				                        ],
+				                        3 => [
+					                        'handle' => 'description',
+					                        'field' => [
+						                        'display' => 'Beschreibung',
+						                        'type' => 'textarea',
+						                        'icon' => 'textarea'
+					                        ],
+				                        ],
+				                        4 => [
+				                        	'handle' => 'background-image',
+					                        'field' => [
+					                        	'display' => 'Hintergrundbild',
+						                        'instructions' => 'Laden Sie hier ein Hintergrundbild hoch, um dem User zu zeigen, warum er die Cookies akzeptieren soll.',
+						                        'type' => 'assets',
+						                        'icon' => 'assets',
+						                        'max_files' => 1,
+						                        'allow_uploads' => true
+					                        ],
 				                        ],
 			                        ],
-			                        1 => [
-				                        'handle' => 'consent-classes',
-				                        'field' => [
-				                        	'display' => 'Notwendige Zustimmungsklassen',
-					                        'instructions' => 'Geben Sie die zu akzeptierenden Zustimmungsklassen an.',
-					                        'type' => 'text',
-					                        'icon' => 'text',
-					                        'input_type' => 'text',
-					                        'width' => 75
-				                        ]
-			                        ],
-			                        2 => [
-				                        'handle' => 'title',
-				                        'field' => [
-					                        'display' => 'Bezeichnung',
-					                        'type' => 'text',
-					                        'icon' => 'text',
-					                        'input_type' => 'text'
-				                        ],
-			                        ],
-			                        3 => [
-				                        'handle' => 'description',
-				                        'field' => [
-					                        'display' => 'Beschreibung',
-					                        'type' => 'textarea',
-					                        'icon' => 'textarea'
-				                        ],
-			                        ],
-			                        4 => [
-			                        	'handle' => 'background-image',
-				                        'field' => [
-				                        	'display' => 'Hintergrundbild',
-					                        'instructions' => 'Laden Sie hier ein Hintergrundbild hoch, um dem User zu zeigen, warum er die Cookies akzeptieren soll.',
-					                        'type' => 'assets',
-					                        'icon' => 'assets',
-					                        'max_files' => 1,
-					                        'allow_uploads' => true
-				                        ]
-			                        ]
+			                        'display' => 'Zustimmungsklassen',
+			                        'mode' => 'stacked',
+			                        'type' => 'grid',
+			                        'icon' => 'grid',
+			                        'reorderable' => true,
+			                        'if' => ['cookie-notice-show' => 'equals true']
 		                        ],
-		                        'display' => 'Overlays',
-		                        'mode' => 'stacked',
-		                        'type' => 'grid',
-		                        'icon' => 'grid',
-		                        'reorderable' => true,
-		                        'if' => ['cookie-notice-show' => 'equals true']
-	                        ]
+	                        ],
                         ],
                     ],
                 ],
