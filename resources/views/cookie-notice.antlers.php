@@ -16,15 +16,15 @@
 				{{ /cookie-consent-classes }}
 				<div class="button-spacer"></div>
 				<div class="button-container">
-					<a id="cookie-notice-button-all" href="/">{{ cookie-notice-button-all }}</a>
-					<a id="cookie-notice-button-selected" href="/">{{ cookie-notice-button-selected }}</a>
+					<a id="cookie-notice-button-all">{{ cookie-notice-button-all }}</a>
+					<a id="cookie-notice-button-selected">{{ cookie-notice-button-selected }}</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 {{ if cookie-notice-inline-script }}
-<script src="/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js"></script>
+<script src="/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js" defer></script>
 {{ /if }}
 {{ else }}
 <div class="cookie-notice-disabled" style="display: none;"></div>

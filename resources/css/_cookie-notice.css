@@ -17,24 +17,9 @@
     @apply absolute top-1/2 left-1/2 p-6 max-w-full;
     @apply transform scale-100 -translate-x-1/2 -translate-y-1/2;
     @apply overflow-y-auto pointer-events-auto;
-    @apply shadow-lg bg-white;
+    @apply shadow-lg;
+    background-color: theme('colors.white');
     width: 90%;
-
-    h2 {
-        @apply text-lg;
-    }
-
-    p {
-        @apply text-sm;
-    }
-
-    .title-spacer, .text-spacer, .button-spacer {
-        @apply py-2;
-    }
-
-    .checkbox-spacer {
-        @apply py-1;
-    }
 
     .button-container {
         @apply flex flex-col justify-start text-center;
@@ -62,7 +47,40 @@
 
     @screen lg {
         @apply max-w-lg inset-auto left-8 bottom-8 transform-none;
+    }
+}
 
+.cookie-overlay {
+    @apply opacity-50;
+    background-color: theme('colors.gray.500');
+
+    .button-container {
+        @apply flex flex-col justify-center;
+
+        a#cookie-overlay-button-accept {
+            @apply button-primary;
+        }
+    }
+}
+
+.cookie-notice-container, .cookie-overlay {
+    h2 {
+        @apply text-lg;
+    }
+
+    p {
+        @apply text-sm;
+    }
+
+    .title-spacer, .text-spacer, .button-spacer {
+        @apply py-2;
+    }
+
+    .checkbox-spacer {
+        @apply py-1;
+    }
+
+    @screen lg {
         h2 {
             @apply text-xl;
         }
