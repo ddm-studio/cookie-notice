@@ -1,5 +1,5 @@
 module.exports = {
-    prefix: "ddm-",
+    prefix: "",
     purge: [
         "./resources/views/cookie-notice.antlers.php",
         './resources/views/cookie-overlay.antlers.php'

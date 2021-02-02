@@ -51,14 +51,19 @@
 }
 
 .cookie-overlay {
-    @apply opacity-50;
-    background-color: theme('colors.gray.500');
+    @apply absolute inset-0 bg-no-repeat bg-cover;
 
-    .button-container {
-        @apply flex flex-col justify-center;
+    .cookie-overlay-container {
+        @apply w-full h-full flex flex-col justify-center;
+        @apply opacity-60;
+        background-color: theme('colors.gray.500');
 
-        a#cookie-overlay-button-accept {
-            @apply button-primary;
+        .button-container {
+            @apply flex flex-col justify-center;
+
+            a#cookie-overlay-button-accept {
+                @apply button-primary;
+            }
         }
     }
 }

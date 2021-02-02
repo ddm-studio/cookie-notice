@@ -58,7 +58,7 @@
                     'main' => [
                         'display' => 'Hauptteil',
                         'fields' => [
-                            1 => [
+                            0 => [
                                 'handle' => 'cookie-notice-show',
                                 'field' => [
                                     'display' => 'Cookie-Hinweis aktivieren',
@@ -66,7 +66,7 @@
                                     'icon' => 'toggle'
                                 ]
                             ],
-                            2 => [
+                            1 => [
                                 'handle' => 'cookie-notice-title',
                                 'field' => [
                                     'display' => 'Titel des Modals',
@@ -78,7 +78,7 @@
                                     'if' => ['cookie-notice-show' => 'equals true']
                                 ],
                             ],
-                            3 => [
+                            2 => [
                                 'handle' => 'cookie-notice-text',
                                 'field' => [
                                     'display' => 'Text des Modals',
@@ -89,7 +89,7 @@
                                     'if' => ['cookie-notice-show' => 'equals true']
                                 ],
                             ],
-                            4 => [
+                            3 => [
                                 'handle' => 'cookie-notice-button-all',
                                 'field' => [
                                     'display' => 'Button "Alle auswählen"',
@@ -97,11 +97,11 @@
                                     'icon' => 'text',
                                     'input_type' => 'text',
                                     'placeholder' => 'Alle auswählen',
-                                    'width' => 50,
+                                    'width' => 33,
                                     'if' => ['cookie-notice-show' => 'equals true']
                                 ]
                             ],
-                            5 => [
+                            4 => [
                                 'handle' => 'cookie-notice-button-selected',
                                 'field' => [
                                     'display' => 'Button "Auswahl bestätigen"',
@@ -109,61 +109,91 @@
                                     'icon' => 'text',
                                     'input_type' => 'text',
                                     'placeholder' => 'Auswahl bestätigen',
-                                    'width' => 50,
+                                    'width' => 33,
                                     'if' => ['cookie-notice-show' => 'equals true']
                                 ]
                             ],
-                            6 => [
-                                'handle' => 'cookie-consent-classes',
-                                'field' => [
-                                    'fields' => [
-                                        0 => [
-                                            'handle' => 'slug',
-                                            'field' => [
-                                                'display' => 'Slug',
-                                                'type' => 'text',
-                                                'icon' => 'text',
-                                                'input_type' => 'text',
-                                                'width' => 25
-                                            ],
-                                        ],
-                                        1 => [
-                                            'handle' => 'title',
-                                            'field' => [
-                                                'display' => 'Bezeichnung',
-                                                'type' => 'text',
-                                                'icon' => 'text',
-                                                'input_type' => 'text',
-                                                'width' => 50
-                                            ],
-                                        ],
-                                        2 => [
-                                            'handle' => 'required',
-                                            'field' => [
-                                                'display' => 'Erforderlich',
-                                                'type' => 'toggle',
-                                                'icon' => 'toggle',
-                                                'width' => 25
-                                            ]
-                                        ],
-                                        3 => [
-                                            'handle' => 'description',
-                                            'field' => [
-                                                'display' => 'Beschreibung',
-                                                'type' => 'textarea',
-                                                'icon' => 'textarea'
-                                            ],
-                                        ],
-                                    ],
-                                    'display' => 'Zustimmungsklassen',
-                                    'mode' => 'stacked',
-                                    'type' => 'grid',
-                                    'icon' => 'grid',
-                                    'reorderable' => true,
-                                    'if' => ['cookie-notice-show' => 'equals true']
-                                ],
-                            ],
+	                        5 => [
+		                        'handle' => 'cookie-notice-button-accept',
+		                        'field' => [
+			                        'display' => 'Button "Cookies akzeptieren"',
+			                        'type' => 'text',
+			                        'icon' => 'text',
+			                        'input_type' => 'text',
+			                        'placeholder' => 'Cookies akzeptieren',
+			                        'width' => 33,
+			                        'if' => ['cookie-notice-show' => 'equals true']
+		                        ]
+	                        ],
+	                        6 => [
+		                        'handle' => 'section-cookie-consent-classes',
+		                        'field' => [
+			                        'display' => 'Cookie-Typen',
+			                        'type' => 'section',
+			                        'icon' => 'section',
+			                        'instructions' => 'Hier können Cookie-Typen für das Cookie Notice und Overlays erstellt werden.'
+		                        ]
+	                        ],
 	                        7 => [
+		                        'handle' => 'cookie-consent-classes',
+		                        'field' => [
+			                        'fields' => [
+				                        0 => [
+					                        'handle' => 'slug',
+					                        'field' => [
+						                        'display' => 'Slug',
+						                        'type' => 'text',
+						                        'icon' => 'text',
+						                        'input_type' => 'text',
+						                        'width' => 25
+					                        ],
+				                        ],
+				                        1 => [
+					                        'handle' => 'title',
+					                        'field' => [
+						                        'display' => 'Bezeichnung',
+						                        'type' => 'text',
+						                        'icon' => 'text',
+						                        'input_type' => 'text',
+						                        'width' => 50
+					                        ],
+				                        ],
+				                        2 => [
+					                        'handle' => 'required',
+					                        'field' => [
+						                        'display' => 'Erforderlich',
+						                        'type' => 'toggle',
+						                        'icon' => 'toggle',
+						                        'width' => 25
+					                        ]
+				                        ],
+				                        3 => [
+					                        'handle' => 'description',
+					                        'field' => [
+						                        'display' => 'Beschreibung',
+						                        'type' => 'textarea',
+						                        'icon' => 'textarea'
+					                        ],
+				                        ],
+			                        ],
+			                        'display' => 'Cookie-Typen',
+			                        'mode' => 'stacked',
+			                        'type' => 'grid',
+			                        'icon' => 'grid',
+			                        'reorderable' => true,
+			                        'if' => ['cookie-notice-show' => 'equals true']
+		                        ],
+	                        ],
+	                        8 => [
+	                        	'handle' => 'section-cookie-overlays',
+		                        'field' => [
+		                        	'display' => 'Cookie-Overlays',
+			                        'type' => 'section',
+			                        'icon' => 'section',
+			                        'instructions' => 'Hier können Cookie-Overlays erstellt werden, die z.B. Drittanbieter-Libraries verdecken.'
+		                        ]
+	                        ],
+	                        9 => [
 		                        'handle' => 'cookie-overlays',
 		                        'field' => [
 			                        'fields' => [
@@ -205,9 +235,9 @@
 					                        ],
 				                        ],
 				                        4 => [
-				                        	'handle' => 'background-image',
+					                        'handle' => 'background-image',
 					                        'field' => [
-					                        	'display' => 'Hintergrundbild',
+						                        'display' => 'Hintergrundbild',
 						                        'instructions' => 'Laden Sie hier ein Hintergrundbild hoch, um dem User zu zeigen, warum er die Cookies akzeptieren soll.',
 						                        'type' => 'assets',
 						                        'icon' => 'assets',
@@ -217,7 +247,7 @@
 					                        ],
 				                        ],
 			                        ],
-			                        'display' => 'Zustimmungsklassen',
+			                        'display' => 'Cookie-Overlays',
 			                        'mode' => 'stacked',
 			                        'type' => 'grid',
 			                        'icon' => 'grid',
