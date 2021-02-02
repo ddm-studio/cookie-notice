@@ -6,6 +6,7 @@
 	use Illuminate\Contracts\Foundation\Application;
 	use Illuminate\Contracts\View\Factory;
 	use Illuminate\Contracts\View\View;
+	use Statamic\Facades\AssetContainer;
 	use Statamic\Facades\Site;
 	use Statamic\Facades\YAML;
 	use Statamic\Tags\Tags;
@@ -52,4 +53,5 @@
 
 			return false;
 		}
+
 	}

@@ -238,13 +238,10 @@
 					                        'handle' => 'background-image',
 					                        'field' => [
 						                        'display' => 'Hintergrundbild',
-						                        'instructions' => 'Laden Sie hier ein Hintergrundbild hoch, um dem User zu zeigen, warum er die Cookies akzeptieren soll.',
-						                        'type' => 'assets',
+						                        'instructions' => 'Geben Sie den Pfad zu einem eindrucksvollen Hintergrundbild relativ zum public-Ordner an.',
+						                        'type' => 'text',
 						                        'icon' => 'assets',
-						                        'mode' => 'grid',
-						                        'container' => 'assets',
-						                        'max_files' => 1,
-						                        'allow_uploads' => true
+						                        'input_type' => 'text'
 					                        ],
 				                        ],
 			                        ],
