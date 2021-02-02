@@ -242,6 +242,7 @@
 						                        'type' => 'assets',
 						                        'icon' => 'assets',
 						                        'mode' => 'grid',
+						                        'container' => 'assets',
 						                        'max_files' => 1,
 						                        'allow_uploads' => true
 					                        ],
