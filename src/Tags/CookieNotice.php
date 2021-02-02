@@ -23,8 +23,7 @@
         public function index() {
             $locale = Site::current()->locale();
 
-            return view('cookie-notice::cookie-notice',
-                collect(YAML::file(base_path('content/cookie-notice-settings_' . $locale . '.yaml'))->parse()));
+            return view('cookie-notice::cookie-notice', collect(YAML::file(base_path('content/cookie-notice-settings_' . $locale . '.yaml'))->parse()));
         }
 
         /**

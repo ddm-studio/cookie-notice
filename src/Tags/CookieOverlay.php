@@ -20,7 +20,7 @@
 		/**
 		 * @param $slug
 		 *
-		 * @return Application|Factory|View
+		 * @return Application|Factory|View|void
 		 */
 		public function index(string $slug = null) {
 			$slug = $slug ?? $this->params->get('slug');
@@ -31,9 +31,10 @@
 
 			$overlayData = $this->getOverlayData($slug, $cookieOverlays);
 
-			if (is_array($overlayData)) {
-				return view('cookie-notice::cookie-overlay', collect($overlayData));
-			}
+			if (!is_array($overlayData))
+				return;
+
+			 return view('cookie-notice::cookie-overlay', $overlayData);
 		}
 
 		/**

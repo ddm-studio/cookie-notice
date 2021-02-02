@@ -1,7 +1,8 @@
 module.exports = {
     prefix: "ddm-",
     purge: [
-        "./resources/views/cookie-notice.antlers.html"
+        "./resources/views/cookie-notice.antlers.php",
+        './resources/views/cookie-overlay.antlers.php'
     ],
     theme: {
         extend: {}
