@@ -30,7 +30,7 @@
             parent::__construct($request);
 
             $this->locale = Utilities::getLocale();
-            $this->configurationFile = 'content/cookie-notice-settings_' . $this->locale . '.yaml';
+            $this->configurationFile = 'content/ddm_cookie_notice_' . $this->locale . '.yaml';
         }
 
         public function index() {

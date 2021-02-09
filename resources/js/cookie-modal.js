@@ -1,24 +1,46 @@
+'use strict';
+
+import { CookieConsent } from './cookie-consent';
+
+const DISPLAY_SLEEP_TIME = 300;
+
+/**
+ * Class for initializing the cookie modal and its actions.
+ */
 export class CookieModal {
     /**
+     * Initializes the cookie modal if it is found on the page.
      *
-     * @param {CookieConsent} instance
+     * @param {CookieConsent} instance the CookieConsent instance
      */
     constructor(instance) {
         this._instance = instance;
 
-        this._cn_bg = document.querySelector('.ddmcn-bg');
-        this._cn_checks = this._cn_bg.querySelectorAll('.cookie-types input[type=\"checkbox\"]');
-        this._cn_checks_not_checked = () => this._cn_bg.querySelectorAll('.cookie-types input[type=\"checkbox\"]:not(:checked)');
+        // As there should only be one cookie modal we query only the first in the DOM
+        this._modal = document.querySelector('.ddmcm');
 
-        this._cn_btn_all = document.querySelector('#ddmcn-button-all');
-        this._cn_btn_selected = document.querySelector('#ddmcn-button-selected');
+        // Query all cookie class checkboxes and stop initialization if there are none
+        this._modal_checks = this._modal.querySelectorAll('.ddmcm-classes input[type=\"checkbox\"]');
+        this._modal_unchecked_checks = () => this._modal.querySelectorAll('.ddmcm-classes input[type=\"checkbox\"]:not(:checked)');
 
-        // Check all previously checked consents, except the ones which are required anyways
-        this._cn_checks_not_checked().forEach((check) => {
+        if (this._modal_checks.length === 0) {
+            return;
+        }
+
+        // Check all previously checked checkboxes, except the ones which are checked already
+        this._modal_unchecked_checks().forEach((check) => {
             check.checked = this._instance.hasConsent(check.name);
         });
 
-        this._cn_btn_all.addEventListener('click', (event) => {
+        // Query the two buttons and stop initialization if they aren't present
+        this._modal_button_all = this._modal.querySelector('#ddmcm-button-all');
+        this._modal_button_selected = this._modal.querySelector('#ddmcm-button-selected');
+
+        if (!document.body.contains(this._modal_button_all) && !document.body.contains(this._modal_button_selected)) {
+            return;
+        }
+
+        this._modal_button_all.addEventListener('click', (event) => {
             event.preventDefault();
 
             this.checkAll();
@@ -26,7 +48,7 @@ export class CookieModal {
             this._finalize();
         });
 
-        this._cn_btn_selected.addEventListener('click', (event) => {
+        this._modal_button_selected.addEventListener('click', (event) => {
             event.preventDefault();
 
             this._finalize();
@@ -38,30 +60,39 @@ export class CookieModal {
         }
     }
 
+    /**
+     * Shows the cookie modal.
+     */
     show() {
-        this._cn_bg.style.display = 'block';
+        this._modal.style.display = 'block';
         setTimeout(() => {
-            this._cn_bg.style.opacity = '1';
+            this._modal.style.opacity = '1';
         }, 10);
     }
 
+    /**
+     * Hides the cookie modal.
+     */
     hide() {
-        this._cn_bg.style.opacity = '0';
+        this._modal.style.opacity = '0';
         setTimeout(() => {
-            this._cn_bg.style.display = 'none';
+            this._modal.style.display = 'none';
         }, DISPLAY_SLEEP_TIME);
     }
 
+    /**
+     * Checks all the cookie class checkboxes.
+     */
     checkAll() {
-        this._cn_checks_not_checked().forEach((check) => check.click());
+        this._modal_unchecked_checks().forEach((check) => check.click());
     }
 
     /**
-     * Sets and pushes consent for all checked cookie type checkboxes.
+     * Consents for all checked cookie class checkboxes.
      * @private
      */
     _pushSettings() {
-        this._cn_checks.forEach((check) => {
+        this._modal_checks.forEach((check) => {
             if (check.checked) {
                 this._instance.consent(check.name);
             }
@@ -71,7 +102,7 @@ export class CookieModal {
     }
 
     /**
-     * Finalizes interaction with the cookie notice tool.
+     * Consents for all checked cookie class checkboxes and hides the cookie modal.
      * @private
      */
     _finalize() {

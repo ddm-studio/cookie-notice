@@ -1,5 +1,12 @@
+'use strict';
+
+import { CookieConsent } from './cookie-consent';
+
 const DISPLAY_SLEEP_TIME = 300;
 
+/**
+ * Class for initializing the cookie covers on the current page.
+ */
 export class CookieCover {
     /**
      *
@@ -8,18 +15,20 @@ export class CookieCover {
     constructor(instance) {
         this._instance = instance;
 
-        this._co_bgs = document.querySelectorAll('.ddmco-bg');
-        this._co_overlays = {};
+        this._covers = document.querySelectorAll('.ddmcc');
 
-        this._co_bgs.forEach((overlay) => {
-            console.log(overlay);
+        // Stop execution if there were no cookie covers found in html
+        if (this._covers.length === 0) {
+            return;
+        }
 
-            this._co_overlays[overlay.id] = {
-                slug: overlay.id,
-                cookieTypes: overlay.dataset.types,
-                htmlElement: overlay
-            };
+        // Create
+        this._covers.forEach((cover) => {
+            // Don't bother to initialize any further if all cookie types have already been consented to
+
         });
+
+
 
         // for (let overlay in this._co_overlays) {
         //     if (Object.prototype.hasOwnProperty.call(this._co_overlays, overlay)) {
@@ -43,9 +52,19 @@ export class CookieCover {
         // }
     }
 
+    /**
+     * Returns the first cookie cover with a given handle.
+     *
+     * @param {string} handle
+     * @returns {Element} the node element
+     */
+    getCoverByHandle(handle) {
+        return document.querySelector('.ddmcc#' + handle);
+    }
+
     show(slug) {
-        if (slug in this._co_overlays) {
-            let element = this._co_overlays[slug].htmlElement;
+        if (slug in this._covers) {
+            let element = this._covers[slug].htmlElement;
 
             element.style.display = 'block';
 
@@ -56,8 +75,8 @@ export class CookieCover {
     }
 
     hide(slug) {
-        if (slug in this._co_overlays) {
-            let element = this._co_overlays[slug].htmlElement;
+        if (slug in this._covers) {
+            let element = this._covers[slug].htmlElement;
 
             element.style.opacity = '0';
 

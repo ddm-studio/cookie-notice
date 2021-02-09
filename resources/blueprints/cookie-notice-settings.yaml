@@ -45,7 +45,7 @@ sections:
                 instructions: 'Die Code-interne Identifizierung.'
                 validate:
                   - required
-                  - alpha_dash
+                  - alpha
             - handle: required
               field:
                 display: Erforderlich
@@ -62,7 +62,6 @@ sections:
                 type: textarea
                 icon: textarea
                 listable: false
-                always: 'true'
                 instructions: 'Hier ist Platz für eine genauere Beschreibung, was die Cookie Kategorie zulässt.'
             - handle: code_snippets
               field:
@@ -121,25 +120,11 @@ sections:
             active: 'equals true'
       - handle: modal_description
         field:
-          always_show_set_button: false
-          buttons:
-            - bold
-            - italic
-            - underline
-            - strikethrough
-            - anchor
-            - removeformat
-          save_html: false
-          toolbar_mode: fixed
-          link_noopener: true
-          link_noreferrer: true
-          target_blank: true
-          reading_time: false
-          fullscreen: false
-          allow_source: false
-          display: 'Beschreibung des Cookie Modals'
-          type: bard
-          icon: bard
+          placeholder: 'Wir verwenden Cookies, um Ihnen auf unserer Website ein optimales Erlebnis zu bieten. Sie können im Folgenden auswählen, welche Cookies Sie zulassen möchten. Nähere Details finden Sie in unserer Datenschutzerklärung.'
+          antlers: false
+          display: 'Text des Modals'
+          type: textarea
+          icon: textarea
           listable: hidden
           if:
             active: 'equals true'
@@ -176,7 +161,7 @@ sections:
           display: 'Cookie Cover'
           type: section
           icon: section
-          instructions: 'Ein Cookie Cover verdeckt Teile der Seite, die eine Aktivierung bestimmter Cookies benötigt. Diese können dann innerhalb des Codes inkludiert werden.'
+          instructions: 'Ein Cookie Cover verdeckt bestimmte Teile der Seite, die eine Aktivierung bestimmter Cookies benötigt.'
           listable: hidden
           if:
             active: 'equals true'
@@ -185,6 +170,7 @@ sections:
           fields:
             - handle: handle
               field:
+                placeholder: googlemaps
                 generate: false
                 display: Handle
                 type: slug
@@ -194,41 +180,36 @@ sections:
                 instructions: 'Code-interne Identifizierung.'
                 validate:
                   - required
-                  - alpha_dash
+                  - alpha
             - handle: classes
               field:
-                placeholder: thirdparty
+                placeholder: 'essential,thirdparty'
                 input_type: text
                 antlers: false
-                display: 'Benötigte Cookie Kategorie'
+                display: 'Benötigte Cookie Kategorien'
                 type: text
                 icon: text
-                instructions: 'Welche Kategorie erfordert Zustimmung, um das Cover verschwinden zu lassen?'
+                instructions: 'Welche Kategorien erfordern Zustimmung, um das Cover verschwinden zu lassen?'
                 listable: hidden
                 validate:
                   - required
                 width: 66
-            - handle: description
+            - handle: title
               field:
-                always_show_set_button: false
-                buttons:
-                  - bold
-                  - italic
-                  - underline
-                  - strikethrough
-                  - anchor
-                  - removeformat
-                save_html: false
-                toolbar_mode: fixed
-                link_noopener: true
-                link_noreferrer: true
-                target_blank: true
-                reading_time: false
-                fullscreen: false
-                allow_source: false
-                display: Beschreibung
-                type: bard
-                icon: bard
+                input_type: text
+                antlers: false
+                display: Überschrift
+                type: text
+                icon: text
+                listable: hidden
+                validate:
+                  - required
+            - handle: paragraph
+              field:
+                antlers: false
+                display: Paragraph
+                type: textarea
+                icon: textarea
                 listable: hidden
             - handle: button_accept
               field:

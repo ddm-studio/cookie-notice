@@ -24,95 +24,126 @@
 
         public function initialize() {
             $this->locale = Utilities::getLocale();
-            $this->configurationFile = 'content/cookie-notice-settings_' . $this->locale . '.yaml';
+            $this->configurationFile = 'content/ddm_cookie_notice_' . $this->locale . '.yaml';
         }
 
+        /**
+         * Inserts the cookie modal with its content and adds the Javascript code.
+         *
+         * @return Application|Factory|View
+         * @throws \Exception
+         */
         public function index() {
             $this->initialize();
 
             $data = YAML::file(base_path($this->configurationFile))->parse();
 
-            if (is_array($data['cookie-types'])) {
-                $data['js_snippet'] = $this->generateScriptLoad($data['cookie-types']);
-            }
-
-            var_dump($data);
+            $this->injectLoadScript($data);
 
             return view('cookie-notice::cookie-modal', collect($data));
         }
 
         /**
-         * Returns either if the consent for a specific class has been given or, if no parameter was given, it has been showed and accepted.
+         * Checks whether the cookie class or cookie classes have already been consented to.
+         * If no parameter is given, it checks if the cookie modal has already been accepted.
          *
-         * @param string|null $cookieType
+         * @param string|null $cookieClasses the cookie class or a list of cookie classes
          *
-         * @return bool
+         * @return bool whether the cookie class has already been consented to
          */
-        public function hasConsent($cookieType = null): bool {
-            $cookieType = $cookieType ?? $this->params->get('cookieType') ?? 'showed';
+        public function hasConsent($cookieClasses = null): bool {
+            $cookieClasses = $cookieClasses ?? $this->params->get('cookieClasses') ?? 'showed';
 
-            if (isset($_COOKIE['cookie-consent-' . $cookieType]))
-                return $_COOKIE['cookie-consent-' . $cookieType] === 'true';
-            else
-                return false;
-        }
+            // Seperate the list by comma
+            $cookieClasses = explode(',', $cookieClasses);
 
-        /**
-         * @param $slug
-         *
-         * @return Application|Factory|View|void
-         */
-        public function overlay(string $slug = null) {
-            $slug = $slug ?? $this->params->get('slug');
+            $consent = false;
 
-            $cookieOverlays = YAML::file(base_path('content/cookie-notice-settings_' . Utilities::getLocale() . '.yaml'))->parse()['cookie-overlays'];
-
-            $overlayData = $this->getOverlayData($slug, $cookieOverlays);
-
-            if (!is_array($overlayData))
-                return;
-
-            return view('cookie-notice::cookie-overlay', collect(array_merge(YAML::file(base_path('content/cookie-notice-settings_' . Utilities::getLocale() . '.yaml'))->parse(), $overlayData)));
-        }
-
-        /**
-         * @param       $slug
-         * @param array $haystack
-         *
-         * @return false|array
-         */
-        private function getOverlayData($slug, array $haystack) {
-            foreach ($haystack as $needle) {
-                if ($needle['slug'] === $slug) {
-                    return $needle;
+            foreach ($cookieClasses as &$cookieType) {
+                if (array_key_exists('ddm-cookie-consent-' . $cookieType, $_COOKIE)) {
+                    $consent = $_COOKIE['ddm-cookie-consent-' . $cookieType] === 'true';
                 }
             }
 
-            return false;
+            return $consent;
         }
 
-        private function generateScriptLoad($cookie_types) {
-            $code = 'var loadCC = () => {';
-            $code .= 'var s = document.createElement(\'script\');';
-            $code .= 's.text = "';
+        /**
+         * Inserts the cookie cover with the given handle. If it doesn't exist, it won't output anything.
+         *
+         * @param string|null $handle
+         *
+         * @return Application|Factory|View|void
+         */
+        public function cover(string $handle = null) {
+            $this->initialize();
+            $handle = $handle ?? $this->params->get('handle');
 
-            foreach ($cookie_types as &$type) {
-                if (is_array($type['code-snippets'])) {
-                    foreach ($type['code-snippets'] as &$code_snippet) {
-                        $code .= 'window.CookieConsent.registerCallback(\'' . $type['slug'] . '\', () => {' . $code_snippet['code'] . '});';
+            $data = YAML::file(base_path($this->configurationFile))->parse();
+
+            // Stop execution if there are no cookie covers
+            if (!array_key_exists('covers', $data))
+                return;
+
+            // Find cookie cover with the given handle
+            $cover = null;
+            foreach ($data['covers'] as &$current_cover) {
+                if ($current_cover['handle'] === $handle) {
+                    $cover = $current_cover;
+                }
+            }
+
+            // Stop execution if it wasn't found
+            if ($cover === null)
+                return;
+
+            // Add cover-specific variables into view data
+            $data = array_merge($data, $cover);
+
+            return view('cookie-notice::cookie-cover', collect($data));
+        }
+
+        /**
+         * Adds a variable with JavaScript in the view's data, so that the cookie notice code will be loaded with all
+         * registered callbacks into DOM, when the whole page has been sucessfully loaded.
+         *
+         * @param $data
+         *
+         * @throws \Exception
+         */
+        private function injectLoadScript(&$data) {
+            // TODO: Some better generation process
+
+            $data['load_code'] = '<script>';
+
+            // Define function _ddmCCLoad, which registers all callbacks
+            $data['load_code'] .= 'var _ddmCCLoad=()=>{';
+
+            // Loop through every code snippet and add register callback code
+            if (array_key_exists('classes', $data)) {
+                foreach ($data['classes'] as &$class) {
+                    if (array_key_exists('code_snippets', $class)) {
+                        foreach ($class['code_snippets'] as &$codeSnippet) {
+                            $data['load_code'] .= 'window.CookieConsent.registerCallback(()=>{' . str_replace('\'', '"', Minifier::minify($codeSnippet['code'])) . '}),';
+                        }
                     }
                 }
             }
 
-            $code .= 'window.CookieConsent._runConsentedCallbacks()";';
-            $code .= 'document.head.appendChild(s)};';
-            $code .= 'document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", loadCC) : loadCC()';
+            // Add runCallbacks function and close _ddmCCload
+            $data['load_code'] .= 'window.CookieConsent.runCallbacks()};';
 
-            $code = trim(preg_replace('/\s+/', ' ', $code));
+            // Add pre-compiled script only if the custom variable is not enabled
+            if (!array_key_exists('dev_custom', $data)) {
+                // Define function _ddmCCInject, which will add scripts to the end of the body
+                $data['load_code'] .= 'var _ddmCCInject=()=>{var a=document.createElement("script");a.setAttribute("src","/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js"),a.addEventListener(\'load\', _ddmCCLoad),document.body.appendChild(a)};';
+                $onLoadFunc = '_ddmCCInject';
+            }
 
-            var_dump($code);
+            // Add code which loads the onload function on load
+            $data['load_code'] .= 'document.readyState !== "loading"?document.addEventListener("DOMContentLoaded",' . $onLoadFunc . '):' . $onLoadFunc . '();';
 
-            return $code;
+            $data['load_code'] .= '</script>';
         }
 
     }

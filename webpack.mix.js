@@ -20,8 +20,7 @@ mix.options({
 });
 
 mix.js([
-    'resources/js/cookie-notice.js',
-    'resources/js/import.js'
+    'resources/js/export.js',
 ], 'resources/dist/js/cookie-notice.min.js');
 
 // mix.postCss('resources/css/ddm-cookie-notice.css', 'resources/dist/css', [
