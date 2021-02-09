@@ -1,71 +1,262 @@
 sections:
-  main:
-    display: Hauptteil
+  cookie_notice:
+    display: 'Cookie Notice'
     fields:
-      - handle: title
+      - handle: active
         field:
-          type: text
-          required: true
-      - handle: cookie-notice-title
+          display: 'Cookie Hinweis aktivieren'
+          type: toggle
+          icon: toggle
+          listable: true
+      - handle: section_classes
         field:
-          placeholder: Cookie-Einstellungen
-          input_type: text
-          antlers: false
-          display: 'Titel des Modals'
-          type: text
-          icon: text
-          instructions: 'Geben Sie dem Cookie-Hinweis einen Titel.'
-          localizable: true
-          listable: hidden
-      - handle: cookie-notice-text
-        field:
-          antlers: false
-          display: 'Text des Modals'
-          type: textarea
-          icon: textarea
-          instructions: 'Beschreiben Sie hier kurz was die Cookies auf der Seite tun.'
-          placeholder: 'Wir verwenden Cookies, um Ihnen auf unserer Website ein optimales Erlebnis zu bieten.'
-          localizable: true
-          listable: hidden
-      - handle: section-consent-classes
-        field:
-          display: Zustimmungsklassen
+          display: 'Cookie Kategorien'
           type: section
           icon: section
-          instructions: 'Hier können die Klassen bearbeitet werden, denen einzeln zugestimmt werden muss.'
-          localizable: true
+          instructions: 'Zuallerst werden die Cookie Kategorien gebraucht, die auf der Seite genutzt werden.'
           listable: hidden
-      - handle: cookie-consent-classes
+          if:
+            active: 'equals true'
+      - handle: classes
         field:
           fields:
-            - handle: cookie-consent-class-slug
+            - handle: title
               field:
-                input_type: text
-                antlers: false
-                display: Slug
-                type: text
-                icon: text
-                width: 33
-                listable: hidden
-            - handle: cookie-consent-class-title
-              field:
+                placeholder: 'Essenzielle Cookies'
                 input_type: text
                 antlers: false
                 display: Bezeichnung
                 type: text
                 icon: text
-                width: 66
+                width: 33
                 listable: hidden
-            - handle: cookie-consent-class-description
+                validate:
+                  - required
+                instructions: 'Prägnante Beschreibung der Nutzung.'
+            - handle: handle
               field:
+                placeholder: 'essential'
+                generate: true
+                display: Handle
+                type: slug
+                icon: slug
+                width: 33
+                listable: hidden
+                instructions: 'Die Code-interne Identifizierung.'
+                validate:
+                  - required
+                  - alpha_dash
+            - handle: required
+              field:
+                display: Erforderlich
+                type: toggle
+                icon: toggle
+                instructions: 'Ist das Cookie zwingend erforderlich?'
+                width: 33
+                listable: hidden
+            - handle: description
+              field:
+                placeholder: 'Essenzielle Cookies sind Cookies, welche für die ordnungsgemäße Funktion der Website benötigt werden.'
                 antlers: false
                 display: Beschreibung
                 type: textarea
                 icon: textarea
+                listable: false
+                always: 'true'
+                instructions: 'Hier ist Platz für eine genauere Beschreibung, was die Cookie Kategorie zulässt.'
+            - handle: code_snippets
+              field:
+                fields:
+                  - handle: code
+                    field:
+                      theme: light
+                      mode: javascript
+                      indent_type: tabs
+                      indent_size: 4
+                      key_map: default
+                      line_numbers: true
+                      line_wrapping: true
+                      display: Code-Snippet
+                      type: code
+                      icon: code
+                      listable: hidden
+                mode: stacked
+                add_row: 'Code-Snippet hinzufügen'
+                reorderable: true
+                display: 'Javascript Code-Snippets'
+                type: grid
+                icon: grid
+                instructions: 'Diese Code-Snippets werden ausgeführt, sobald der User der Cookie Kategorie zustimmt.'
                 listable: hidden
-          mode: table
+          mode: stacked
+          add_row: 'Cookie Kategorie hinzufügen'
           reorderable: true
-          display: Zustimmungsklassen
+          display: 'Cookie Kategorien'
           type: grid
           icon: grid
           listable: hidden
+          if:
+            active: 'equals true'
+      - handle: section_modal
+        field:
+          display: 'Cookie Modal'
+          type: section
+          icon: section
+          instructions: 'Das Cookie Modal hilft dem User beim ersten Seitenbesuch zu verstehen, warum Cookies auf der Seite gebraucht werden.'
+          listable: hidden
+          if:
+            active: 'equals true'
+      - handle: modal_title
+        field:
+          placeholder: Cookie-Einstellungen
+          input_type: text
+          antlers: false
+          display: 'Titel des Cookie Modals'
+          type: text
+          icon: text
+          listable: hidden
+          validate:
+            - required
+          if:
+            active: 'equals true'
+      - handle: modal_description
+        field:
+          always_show_set_button: false
+          buttons:
+            - bold
+            - italic
+            - underline
+            - strikethrough
+            - anchor
+            - removeformat
+          save_html: false
+          toolbar_mode: fixed
+          link_noopener: true
+          link_noreferrer: true
+          target_blank: true
+          reading_time: false
+          fullscreen: false
+          allow_source: false
+          display: 'Beschreibung des Cookie Modals'
+          type: bard
+          icon: bard
+          listable: hidden
+          if:
+            active: 'equals true'
+      - handle: modal_button_all
+        field:
+          placeholder: 'Alle auswählen'
+          input_type: text
+          antlers: false
+          display: 'Button "Alle auswählen"'
+          type: text
+          icon: text
+          width: 50
+          listable: hidden
+          validate:
+            - required
+          if:
+            active: 'equals true'
+      - handle: modal_button_selected
+        field:
+          placeholder: 'Auswahl bestätigen'
+          input_type: text
+          antlers: false
+          display: 'Button "Auswahl bestätigen"'
+          type: text
+          icon: text
+          width: 50
+          listable: hidden
+          validate:
+            - required
+          if:
+            active: 'equals true'
+      - handle: section_cover
+        field:
+          display: 'Cookie Cover'
+          type: section
+          icon: section
+          instructions: 'Ein Cookie Cover verdeckt Teile der Seite, die eine Aktivierung bestimmter Cookies benötigt. Diese können dann innerhalb des Codes inkludiert werden.'
+          listable: hidden
+          if:
+            active: 'equals true'
+      - handle: covers
+        field:
+          fields:
+            - handle: handle
+              field:
+                generate: false
+                display: Handle
+                type: slug
+                icon: slug
+                width: 33
+                listable: hidden
+                instructions: 'Code-interne Identifizierung.'
+                validate:
+                  - required
+                  - alpha_dash
+            - handle: classes
+              field:
+                placeholder: thirdparty
+                input_type: text
+                antlers: false
+                display: 'Benötigte Cookie Kategorie'
+                type: text
+                icon: text
+                instructions: 'Welche Kategorie erfordert Zustimmung, um das Cover verschwinden zu lassen?'
+                listable: hidden
+                validate:
+                  - required
+                width: 66
+            - handle: description
+              field:
+                always_show_set_button: false
+                buttons:
+                  - bold
+                  - italic
+                  - underline
+                  - strikethrough
+                  - anchor
+                  - removeformat
+                save_html: false
+                toolbar_mode: fixed
+                link_noopener: true
+                link_noreferrer: true
+                target_blank: true
+                reading_time: false
+                fullscreen: false
+                allow_source: false
+                display: Beschreibung
+                type: bard
+                icon: bard
+                listable: hidden
+            - handle: button_accept
+              field:
+                placeholder: 'Cookies akzeptieren'
+                input_type: text
+                antlers: false
+                display: 'Button "Cookies akzeptieren"'
+                type: text
+                icon: text
+                listable: hidden
+                validate:
+                  - required
+            - handle: bg_image
+              field:
+                placeholder: /assets/cover_image.jpg
+                input_type: text
+                antlers: false
+                display: Hintergrundbild
+                type: text
+                icon: text
+                instructions: 'Der Pfad zu einem Bild, welches den Inhalt darstellt, der durch das Akzeptieren der Cookies sichtbar wird.'
+                listable: hidden
+          mode: stacked
+          add_row: 'Cookie Cover hinzufügen'
+          reorderable: true
+          display: 'Cookie Covers'
+          type: grid
+          icon: grid
+          listable: hidden
+          if:
+            active: 'equals true'

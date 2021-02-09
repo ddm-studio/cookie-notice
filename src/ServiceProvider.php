@@ -5,7 +5,6 @@
 
     use DDM\CookieNotice\Http\Controllers\SettingsController;
     use DDM\CookieNotice\Tags\CookieNotice;
-    use DDM\CookieNotice\Tags\CookieOverlay;
     use Illuminate\Support\Facades\Route;
     use Statamic\Facades\CP\Nav;
     use Statamic\Providers\AddonServiceProvider;
@@ -18,14 +17,22 @@
      */
     class ServiceProvider extends AddonServiceProvider {
 
+        /**
+         * All of the addons tags
+         *
+         * @var string[] tag class identifiers
+         */
         protected $tags = [
-            CookieNotice::class,
-	        CookieOverlay::class
+            CookieNotice::class
         ];
 
+        /**
+         * This function is called at boot time of the addon
+         */
         public function boot() {
             parent::boot();
 
+            // Wait until Statamic itself has booted up
             Statamic::booted(function () {
                 // Register settings routes
                 $this->registerCpRoutes(function () {
@@ -35,6 +42,7 @@
                     });
                 });
 
+                // Register vendor:publish routes
                 $this->publishes([
                     __DIR__ . '/../resources/dist/js' => public_path('/vendor/ddm-studio/cookie-notice/js')
                 ], 'ddm-cookie-notice');
@@ -43,8 +51,10 @@
 	                __DIR__ . '/../resources/css' => resource_path('css/')
                 ], 'ddm-cookie-notice-css');
 
+                // Setting up namespace and loaded views
                 $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'cookie-notice');
 
+                // Add cookie notice in the navigation
                 Nav::extend(function ($nav) {
                     $nav->content('Cookie Hinweis')
                         ->section('Tools')
