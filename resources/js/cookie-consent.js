@@ -69,6 +69,7 @@ export class CookieConsent {
      * @param {string} cookieClass the cookie classes
      */
     runCallback(cookieClass) {
+        // TODO: Prevention of running callbacks multiple times
         if (this.hasConsent(cookieClass)) {
             // check whether the cookie class has callback functions
             if (cookieClass in this._options.callbacks) {

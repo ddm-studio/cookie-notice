@@ -2,7 +2,7 @@
 
 import { CookieConsent } from './cookie-consent';
 
-const DISPLAY_SLEEP_TIME = 300;
+const DISPLAY_SLEEP_TIME = 500;
 
 /**
  * Class for initializing the cookie covers on the current page.
@@ -25,31 +25,25 @@ export class CookieCover {
         // Create
         this._covers.forEach((cover) => {
             // Don't bother to initialize any further if all cookie types have already been consented to
+            if (this._instance.hasConsent(cover.dataset.classes)) {
+                return;
+            }
 
+            let cover_button = cover.querySelector('#ddmcc-button-accept');
+
+            // Stop initialization if the button isn't present
+            if (!document.contains(cover_button)) {
+                return;
+            }
+
+            cover_button.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                this._instance.consent(cover.dataset.classes);
+
+                this.hide(cover.id);
+            });
         });
-
-
-
-        // for (let overlay in this._co_overlays) {
-        //     if (Object.prototype.hasOwnProperty.call(this._co_overlays, overlay)) {
-        //         console.log(overlay);
-        //
-        //         // Don't bother to initialize any further if all cookie types have already been consented to
-        //         if (this._instance.hasConsent(overlay.dataset.types)) {
-        //             return;
-        //         }
-        //
-        //         console.log(overlay.htmlElement.querySelector('#ddmco-button-accept'));
-        //
-        //         overlay.htmlElement.querySelector('#ddmco-button-accept').addEventListener('click', (event) => {
-        //             event.preventDefault();
-        //
-        //             this._instance.consent(overlay.cookieTypes);
-        //
-        //             this.hide(overlay.slug);
-        //         });
-        //     }
-        // }
     }
 
     /**
@@ -59,29 +53,29 @@ export class CookieCover {
      * @returns {Element} the node element
      */
     getCoverByHandle(handle) {
-        return document.querySelector('.ddmcc#' + handle);
+        return document.querySelector('.ddmcc#' + handle) ?? false;
     }
 
-    show(slug) {
-        if (slug in this._covers) {
-            let element = this._covers[slug].htmlElement;
+    show(handle) {
+        let cover = this.getCoverByHandle(handle);
 
-            element.style.display = 'block';
+        if (cover) {
+            cover.style.display = 'block';
 
             setTimeout(() => {
-                element.style.opacity = '1';
+                cover.style.opacity = '1';
             }, 10);
         }
     }
 
-    hide(slug) {
-        if (slug in this._covers) {
-            let element = this._covers[slug].htmlElement;
+    hide(handle) {
+        let cover = this.getCoverByHandle(handle);
 
-            element.style.opacity = '0';
+        if (cover) {
+            cover.style.opacity = '0';
 
             setTimeout(() => {
-                element.style.display = 'none';
+                cover.style.display = 'none';
             }, DISPLAY_SLEEP_TIME);
         }
     }

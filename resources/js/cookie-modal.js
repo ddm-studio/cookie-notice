@@ -2,7 +2,7 @@
 
 import { CookieConsent } from './cookie-consent';
 
-const DISPLAY_SLEEP_TIME = 300;
+const DISPLAY_SLEEP_TIME = 500;
 
 /**
  * Class for initializing the cookie modal and its actions.

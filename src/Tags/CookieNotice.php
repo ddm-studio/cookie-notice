@@ -113,10 +113,11 @@
          */
         private function injectLoadScript(&$data) {
             // TODO: Some better generation process
+            // TODO: Add possibility to initialize cookie consents in own code
 
             $data['load_code'] = '<script>';
 
-            // Define function _ddmCCLoad, which registers all callbacks
+            // Define _ddmCCLoad function which loads dynamically injected callbacks
             $data['load_code'] .= 'var _ddmCCLoad=()=>{';
 
             // Loop through every code snippet and add register callback code
@@ -124,7 +125,7 @@
                 foreach ($data['classes'] as &$class) {
                     if (array_key_exists('code_snippets', $class)) {
                         foreach ($class['code_snippets'] as &$codeSnippet) {
-                            $data['load_code'] .= 'window.CookieConsent.registerCallback(()=>{' . str_replace('\'', '"', Minifier::minify($codeSnippet['code'])) . '}),';
+                            $data['load_code'] .= 'window.CookieConsent.registerCallback("' . $class['handle'] . '",()=>{' . str_replace('\'', '"', Minifier::minify($codeSnippet['code'])) . '});';
                         }
                     }
                 }
@@ -133,17 +134,13 @@
             // Add runCallbacks function and close _ddmCCload
             $data['load_code'] .= 'window.CookieConsent.runCallbacks()};';
 
-            // Add pre-compiled script only if the custom variable is not enabled
-            if (!array_key_exists('dev_custom', $data)) {
-                // Define function _ddmCCInject, which will add scripts to the end of the body
-                $data['load_code'] .= 'var _ddmCCInject=()=>{var a=document.createElement("script");a.setAttribute("src","/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js"),a.addEventListener(\'load\', _ddmCCLoad),document.body.appendChild(a)};';
-                $onLoadFunc = '_ddmCCInject';
-            }
+            // Add event listener when document finished loading
+            $data['load_code'] .= 'document.addEventListener("DOMContentLoaded",()=>{';
 
-            // Add code which loads the onload function on load
-            $data['load_code'] .= 'document.readyState !== "loading"?document.addEventListener("DOMContentLoaded",' . $onLoadFunc . '):' . $onLoadFunc . '();';
+            // Add pre-compiled script and after its load call _ddmCCLoad
+            $data['load_code'] .= 'var a=document.createElement("script");a.setAttribute("src","/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js");a.addEventListener(\'load\', _ddmCCLoad);document.body.appendChild(a);';
 
-            $data['load_code'] .= '</script>';
+            $data['load_code'] .= '});</script>';
         }
 
     }
