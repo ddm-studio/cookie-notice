@@ -12,8 +12,7 @@
     ]
    ```
 2. Install package with ``composer require ddm-studio/cookie-notice``
-3. Publish Javascript with ``php please vendor:publish --tag="ddm-cookie-notice" -force``
-4. Optional: Publish css to modify styles: ``php please vendor:publish --tag=ddm-cookie-notice-css --force``
+3. Optional: Publish css to modify styles: ``php please vendor:publish --tag="ddm-cookie-notice-css" --force``
 
 4. Import the ``/resources/css/_cookie-notice.css`` into your stylesheet.
    
