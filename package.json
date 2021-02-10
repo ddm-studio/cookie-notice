@@ -1,6 +1,6 @@
 {
     "name": "cookie-notice",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "main": "resources/js/cookie-notice.js",
     "scripts": {
         "dev": "npm run development",

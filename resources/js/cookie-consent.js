@@ -105,6 +105,11 @@ export class CookieConsent {
 
         this._runSplitList(cookieClasses, (cookieClass) => {
             consent = Cookies.get(this._options.prefix + cookieClass) === 'true';
+
+            // Return false if the current cookie class hasn't been consented to
+            if (!consent) {
+                return false;
+            }
         });
 
         return consent;

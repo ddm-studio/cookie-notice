@@ -59,9 +59,12 @@
 
             $consent = false;
 
-            foreach ($cookieClasses as &$cookieType) {
-                if (array_key_exists('ddm-cookie-consent-' . $cookieType, $_COOKIE)) {
-                    $consent = $_COOKIE['ddm-cookie-consent-' . $cookieType] === 'true';
+            foreach ($cookieClasses as &$cookieClass) {
+                if (array_key_exists('ddm-cookie-consent-' . $cookieClass, $_COOKIE)) {
+                    // Return false if the current cookie class hasn't been consented to
+                    if (!($consent = $_COOKIE['ddm-cookie-consent-' . $cookieClass] === 'true')) {
+                        return false;
+                    }
                 }
             }
 
