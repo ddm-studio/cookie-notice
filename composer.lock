@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22dac74c5cda1814b774f2f0e4d08046",
+    "content-hash": "3ed0e15098dc93215cbf474ea67f7bc7",
     "packages": [
         {
             "name": "brick/math",
@@ -145,12 +145,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "28bc0cecf1228de2743bbff5c41bce7d2c5e5714"
+                "reference": "8d94e25c2f5e2f8d54cb409b6facedf13dae2394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/28bc0cecf1228de2743bbff5c41bce7d2c5e5714",
-                "reference": "28bc0cecf1228de2743bbff5c41bce7d2c5e5714",
+                "url": "https://api.github.com/repos/composer/composer/zipball/8d94e25c2f5e2f8d54cb409b6facedf13dae2394",
+                "reference": "8d94e25c2f5e2f8d54cb409b6facedf13dae2394",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +235,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-08T12:32:30+00:00"
+            "time": "2021-02-10T10:28:01+00:00"
         },
         {
             "name": "composer/semver",
@@ -1256,12 +1256,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2f96f8416dd279fcc7633aaf27c35c099e7c4d3a"
+                "reference": "a6680d98f9dadaa363aa7d5218517a08706cee64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2f96f8416dd279fcc7633aaf27c35c099e7c4d3a",
-                "reference": "2f96f8416dd279fcc7633aaf27c35c099e7c4d3a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a6680d98f9dadaa363aa7d5218517a08706cee64",
+                "reference": "a6680d98f9dadaa363aa7d5218517a08706cee64",
                 "shasum": ""
             },
             "require": {
@@ -1417,7 +1417,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-02-08T20:04:18+00:00"
+            "time": "2021-02-09T15:14:54+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -1938,12 +1938,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c497cc646a95f09e197ce4bb4fb4f4da6c0e3920"
+                "reference": "c1971982c3b792e488726468046b1ef977934c6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c497cc646a95f09e197ce4bb4fb4f4da6c0e3920",
-                "reference": "c497cc646a95f09e197ce4bb4fb4f4da6c0e3920",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c1971982c3b792e488726468046b1ef977934c6a",
+                "reference": "c1971982c3b792e488726468046b1ef977934c6a",
                 "shasum": ""
             },
             "require": {
@@ -2027,7 +2027,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T16:04:26+00:00"
+            "time": "2021-02-09T13:27:42+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -2843,12 +2843,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise.git",
-                "reference": "09d5ffcb15e1d656bc72c0394bcf770f974be136"
+                "reference": "a9752a861e21c0fe0b380c9f9e55beddc0ed7d31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/09d5ffcb15e1d656bc72c0394bcf770f974be136",
-                "reference": "09d5ffcb15e1d656bc72c0394bcf770f974be136",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/a9752a861e21c0fe0b380c9f9e55beddc0ed7d31",
+                "reference": "a9752a861e21c0fe0b380c9f9e55beddc0ed7d31",
                 "shasum": ""
             },
             "require": {
@@ -2895,104 +2895,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-26T17:59:02+00:00"
-        },
-        {
-            "name": "rebing/graphql-laravel",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rebing/graphql-laravel.git",
-                "reference": "fb48c1dd7838591c1cf5807ac8fb95e42ea6f9ed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rebing/graphql-laravel/zipball/fb48c1dd7838591c1cf5807ac8fb95e42ea6f9ed",
-                "reference": "fb48c1dd7838591c1cf5807ac8fb95e42ea6f9ed",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "illuminate/contracts": "^6.0|^7.0|^8.0",
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "php": ">= 7.2",
-                "webonyx/graphql-php": "^14.0"
-            },
-            "require-dev": {
-                "ext-pdo_sqlite": "*",
-                "friendsofphp/php-cs-fixer": "^2.15",
-                "laravel/legacy-factories": "^1.0",
-                "matt-allan/laravel-code-style": "0.5.1",
-                "mockery/mockery": "^1.2",
-                "nunomaduro/larastan": "0.6.10",
-                "orchestra/testbench": "4.0.*|5.0.*|^6.0",
-                "phpunit/phpunit": "~7.0|~8.0|^9"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Rebing\\GraphQL\\GraphQLServiceProvider"
-                    ],
-                    "aliases": {
-                        "GraphQL": "Rebing\\GraphQL\\Support\\Facades\\GraphQL"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rebing\\GraphQL\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rebing OÜ",
-                    "homepage": "http://www.rebing.ee",
-                    "role": "Company"
-                },
-                {
-                    "name": "Mikk Mihkel Nurges",
-                    "email": "mikk.nurges@rebing.ee",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Folklore",
-                    "email": "info@atelierfolklore.ca",
-                    "homepage": "http://atelierfolklore.ca"
-                },
-                {
-                    "name": "David Mongeau-Petitpas",
-                    "email": "dmp@atelierfolklore.ca",
-                    "homepage": "http://mongo.ca",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Markus Podar",
-                    "email": "markus@fischer.name",
-                    "homepage": "https://github.com/mfn",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel wrapper for PHP GraphQL",
-            "keywords": [
-                "framework",
-                "graphql",
-                "laravel",
-                "react"
-            ],
-            "support": {
-                "issues": "https://github.com/rebing/graphql-laravel/issues",
-                "source": "https://github.com/rebing/graphql-laravel/tree/master"
-            },
-            "time": "2021-02-05T20:33:43+00:00"
+            "time": "2021-02-09T15:06:50+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -3165,16 +3068,16 @@
         },
         {
             "name": "statamic/cms",
-            "version": "v3.1.0-alpha.2",
+            "version": "3.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/statamic/cms.git",
-                "reference": "60e0dc631fee1e7c2008338a77828e01e90c9edd"
+                "reference": "0fea01907e5f11a4fe0575251c03c007df5ffdd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/statamic/cms/zipball/60e0dc631fee1e7c2008338a77828e01e90c9edd",
-                "reference": "60e0dc631fee1e7c2008338a77828e01e90c9edd",
+                "url": "https://api.github.com/repos/statamic/cms/zipball/0fea01907e5f11a4fe0575251c03c007df5ffdd0",
+                "reference": "0fea01907e5f11a4fe0575251c03c007df5ffdd0",
                 "shasum": ""
             },
             "require": {
@@ -3182,14 +3085,13 @@
                 "ext-json": "*",
                 "facade/ignition-contracts": "^1.0",
                 "guzzlehttp/guzzle": "^6.3 || ^7.0",
-                "laravel/framework": "^6.6.2 || ^7.0 || ^8.18.1",
+                "laravel/framework": "^6.0 || ^7.0 || ^8.18.1",
                 "laravel/helpers": "^1.1",
                 "league/commonmark": "^1.5",
                 "league/csv": "^9.0",
                 "league/glide": "^1.1",
                 "michelf/php-smartypants": "^1.8",
                 "pixelfear/composer-dist-plugin": "^0.1.4",
-                "rebing/graphql-laravel": "^6.1",
                 "spatie/blink": "^1.1.2",
                 "statamic/stringy": "^3.1",
                 "symfony/http-foundation": "^4.3.3 || ^5.1.4",
@@ -3206,6 +3108,7 @@
                 "mockery/mockery": "^1.2.3",
                 "orchestra/testbench": "^4.0 || ^5.0 || ^6.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "download-dist": {
@@ -3242,7 +3145,7 @@
             ],
             "support": {
                 "issues": "https://github.com/statamic/cms/issues",
-                "source": "https://github.com/statamic/cms/tree/v3.1.0-alpha.2"
+                "source": "https://github.com/statamic/cms/tree/3.0"
             },
             "funding": [
                 {
@@ -3250,7 +3153,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-04T21:45:59+00:00"
+            "time": "2021-02-09T22:52:16+00:00"
         },
         {
             "name": "statamic/stringy",
@@ -5887,7 +5790,7 @@
         },
         {
             "name": "tedivm/jshrink",
-            "version": "dev-master",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tedious/JShrink.git",
@@ -5907,7 +5810,6 @@
                 "php-coveralls/php-coveralls": "^1.1.0",
                 "phpunit/phpunit": "^6"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -6317,72 +6219,6 @@
             "time": "2021-01-18T12:52:36+00:00"
         },
         {
-            "name": "webonyx/graphql-php",
-            "version": "v14.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "3af8b92d07e0d7a9085c0b83daf86beaeb76f092"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/3af8b92d07e0d7a9085c0b83daf86beaeb76f092",
-                "reference": "3af8b92d07e0d7a9085c0b83daf86beaeb76f092",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": "^7.1||^8.0"
-            },
-            "require-dev": {
-                "amphp/amp": "^2.3",
-                "doctrine/coding-standard": "^6.0",
-                "nyholm/psr7": "^1.2",
-                "phpbench/phpbench": "^0.16.10",
-                "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "0.12.32",
-                "phpstan/phpstan-phpunit": "0.12.11",
-                "phpstan/phpstan-strict-rules": "0.12.2",
-                "phpunit/phpunit": "^7.2|^8.5",
-                "psr/http-message": "^1.0",
-                "react/promise": "2.*",
-                "simpod/php-coveralls-mirror": "^3.0",
-                "squizlabs/php_codesniffer": "3.5.4"
-            },
-            "suggest": {
-                "psr/http-message": "To use standard GraphQL server",
-                "react/promise": "To leverage async resolving on React PHP platform"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "GraphQL\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A PHP port of GraphQL reference implementation",
-            "homepage": "https://github.com/webonyx/graphql-php",
-            "keywords": [
-                "api",
-                "graphql"
-            ],
-            "support": {
-                "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v14.5.1"
-            },
-            "funding": [
-                {
-                    "url": "https://opencollective.com/webonyx-graphql-php",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2021-02-05T10:51:56+00:00"
-        },
-        {
             "name": "wilderborn/partyline",
             "version": "1.0",
             "source": {
@@ -6433,9 +6269,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tedivm/jshrink": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

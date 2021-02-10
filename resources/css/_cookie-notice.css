@@ -36,7 +36,7 @@
     }
 
     h2 {
-        @apply text-lg lg:text-xl bg-none;
+        @apply text-lg lg:text-xl;
     }
 
     p {
@@ -77,6 +77,7 @@
 
 .ddmcc {
     @apply absolute inset-0 bg-no-repeat bg-cover;
+    @apply transition-opacity duration-300;
 }
 
 .ddmcc-pos {
@@ -88,6 +89,7 @@
     @apply px-12 lg:px-16;
 
     * {
+        @apply text-center;
         color: theme('colors.white');
     }
 
