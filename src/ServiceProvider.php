@@ -46,7 +46,7 @@
                 $this->publishes([
                     __DIR__ . '/../resources/dist/js' => public_path('vendor/ddm-studio/cookie-notice/js/'),
 	                __DIR__ . '/../resources/css' => resource_path('css/')
-                ], 'ddm-cookie-notice-css');
+                ], 'cookie-notice');
 
                 // Setting up namespace and loaded views
                 $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'cookie-notice');
