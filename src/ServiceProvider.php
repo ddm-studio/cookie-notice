@@ -26,11 +26,6 @@
             CookieNotice::class
         ];
 
-        protected $publishables = [
-            __DIR__ . '/../resources/dist/js/cookie-notice.min.js' => 'public/vendor/ddm-studio/cookie-notice/js/',
-            __DIR__ . '/../resources/css' => 'resources/css/'
-        ];
-
         /**
          * This function is called at boot time of the addon
          */
@@ -46,6 +41,12 @@
                     	Route::post('/', [SettingsController::class, 'update'])->name('update');
                     });
                 });
+
+                // Register vendor:publish routes
+                $this->publishes([
+                    __DIR__ . '/../resources/dist/js' => public_path('vendor/ddm-studio/cookie-notice/js/'),
+	                __DIR__ . '/../resources/css' => resource_path('css/')
+                ], 'ddm-cookie-notice-css');
 
                 // Setting up namespace and loaded views
                 $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'cookie-notice');

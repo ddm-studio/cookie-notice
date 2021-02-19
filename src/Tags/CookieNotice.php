@@ -141,7 +141,7 @@
             $data['load_code'] .= 'document.addEventListener("DOMContentLoaded",()=>{';
 
             // Add pre-compiled script and after its load call _ddmCCLoad
-            $data['load_code'] .= 'var a=document.createElement("script");a.setAttribute("src","/vendor/cookie-notice/js/cookie-notice.min.js");a.addEventListener(\'load\', _ddmCCLoad);document.body.appendChild(a);';
+            $data['load_code'] .= 'var a=document.createElement("script");a.setAttribute("src","/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js");a.addEventListener(\'load\', _ddmCCLoad);document.body.appendChild(a);';
 
             $data['load_code'] .= '});</script>';
         }
