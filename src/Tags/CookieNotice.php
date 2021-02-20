@@ -121,7 +121,7 @@
             $data['load_code'] = '<script>';
 
             // Define _ddmCCLoad function which loads dynamically injected callbacks
-            $data['load_code'] .= 'var _ddmCCLoad=()=>{';
+            $data['load_code'] .= 'var _ddmCCLoad=function(){';
 
             // Loop through every code snippet and add register callback code
             if (array_key_exists('classes', $data)) {
@@ -135,10 +135,10 @@
             }
 
             // Add runCallbacks function and close _ddmCCload
-            $data['load_code'] .= 'window.CookieConsent.runCallbacks()};';
+            $data['load_code'] .= '_DDMCC.runCallbacks()};';
 
             // Add event listener when document finished loading
-            $data['load_code'] .= 'document.addEventListener("DOMContentLoaded",()=>{';
+            $data['load_code'] .= 'document.addEventListener("DOMContentLoaded",function(){';
 
             // Add pre-compiled script and after its load call _ddmCCLoad
             $data['load_code'] .= 'var a=document.createElement("script");a.setAttribute("src","/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js");a.addEventListener(\'load\', _ddmCCLoad);document.body.appendChild(a);';
