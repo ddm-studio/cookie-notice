@@ -1,6 +1,9 @@
 {
     "name": "ddm-studio/cookie-notice",
+    "type": "statamic-addon",
     "version": "1.1.2",
+    "description": "Cookie Consent Tool for DDM pages.",
+    "homepage": "https://github.com/ddm-studio/cookie-notice",
     "authors": [
         {
             "name": "Daniel Kral",
@@ -17,7 +20,8 @@
     "extra": {
         "statamic": {
             "name": "Cookie Consent Tool",
-            "description": "Cookie Consent Tool for DDM pages."
+            "description": "Cookie Consent Tool for DDM pages.",
+            "version": "1.1.2"
         },
         "laravel": {
             "providers": [

@@ -25,7 +25,7 @@
         protected $tags = [
             CookieNotice::class
         ];
-
+        
         /**
          * This function is called at boot time of the addon
          */
@@ -58,6 +58,13 @@
                         ->route('ddm-studio.cookie-notice.index')
                         ->icon('alert');
                 });
+            });
+
+            Statamic::afterInstalled(function ($command) {
+	            $command->call('vendor:publish', [
+		            '--tag' => 'cookie-notice',
+		            '--force' => true,
+	            ]);
             });
         }
     }
