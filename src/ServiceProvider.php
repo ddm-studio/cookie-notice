@@ -7,6 +7,7 @@
     use DDM\CookieNotice\Tags\CookieNotice;
     use Illuminate\Support\Facades\Route;
     use Statamic\Facades\CP\Nav;
+    use Statamic\Facades\File;
     use Statamic\Providers\AddonServiceProvider;
     use Statamic\Statamic;
 
@@ -25,7 +26,7 @@
         protected $tags = [
             CookieNotice::class
         ];
-        
+
         /**
          * This function is called at boot time of the addon
          */
@@ -53,10 +54,12 @@
 
                 // Add cookie notice in the navigation
                 Nav::extend(function ($nav) {
+                    $cookieIconData = File::get(__DIR__ . '/../resources/svg/ddm-cookie.svg');
+
                     $nav->content('Cookie Hinweis')
                         ->section('Tools')
                         ->route('ddm-studio.cookie-notice.index')
-                        ->icon('alert');
+                        ->icon($cookieIconData ?? 'alert');
                 });
             });
 
