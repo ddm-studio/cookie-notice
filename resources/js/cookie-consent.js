@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 /**
  * Class for handling cookie requests, changes and callbacks
  */
-export class CookieConsent {
+export default class CookieConsent {
     /**
      * Creates the instance for handling cookie requests, changes and callbacks.
      *

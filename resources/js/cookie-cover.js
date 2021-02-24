@@ -7,7 +7,7 @@ const DISPLAY_SLEEP_TIME = 500;
 /**
  * Class for initializing the cookie covers on the current page.
  */
-export class CookieCover {
+export default class CookieCover {
     /**
      *
      * @param {CookieConsent} instance
@@ -29,12 +29,11 @@ export class CookieCover {
                 return;
             }
 
-            let cover_button = cover.querySelector('#ddmcc-button-accept');
+            const cover_button = cover.querySelector('#ddmcc-button-accept');
 
             // Stop initialization if the button isn't present
-            if (!document.contains(cover_button)) {
+            if (cover_button === null) // TODO Find IE11-compatible equivalent to document.body.contains(...)
                 return;
-            }
 
             cover_button.addEventListener('click', (event) => {
                 event.preventDefault();

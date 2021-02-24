@@ -122,20 +122,22 @@
 
             // Define _ddmCCLoad function which loads dynamically injected callbacks
             $data['load_code'] .= 'var _ddmCCLoad=function(){';
+            $data['load_code'] .= 'window._DDMCC=new window.CookieConsent();window._DDMCM=new window.CookieModal(window._DDMCC);window._DDMCCC=new window.CookieCover(window._DDMCC);';
+
 
             // Loop through every code snippet and add register callback code
             if (array_key_exists('classes', $data)) {
                 foreach ($data['classes'] as &$class) {
                     if (array_key_exists('code_snippets', $class)) {
                         foreach ($class['code_snippets'] as &$codeSnippet) {
-                            $data['load_code'] .= 'window.CookieConsent.registerCallback("' . $class['handle'] . '",()=>{' . str_replace('\'', '"', Minifier::minify($codeSnippet['code'])) . '});';
+                            $data['load_code'] .= 'window._DDMCC.registerCallback("' . $class['handle'] . '",function(){' . str_replace('\'', '"', Minifier::minify($codeSnippet['code'])) . '});';
                         }
                     }
                 }
             }
 
             // Add runCallbacks function and close _ddmCCload
-            $data['load_code'] .= '_DDMCC.runCallbacks()};';
+            $data['load_code'] .= 'window._DDMCC.runCallbacks()};';
 
             // Add event listener when document finished loading
             $data['load_code'] .= 'document.addEventListener("DOMContentLoaded",function(){';

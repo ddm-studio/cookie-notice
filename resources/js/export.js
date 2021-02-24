@@ -1,7 +1,3 @@
-import { CookieConsent } from './cookie-consent';
-import { CookieModal } from './cookie-modal';
-import { CookieCover } from './cookie-cover';
-
-window.CookieConsent = new CookieConsent();
-window.CookieModal = new CookieModal(window.CookieConsent);
-window.CookieCover = new CookieCover(window.CookieConsent);
+window.CookieConsent = require('./cookie-consent').default;
+window.CookieModal = require('./cookie-modal').default;
+window.CookieCover = require('./cookie-cover').default;

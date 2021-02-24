@@ -17,6 +17,12 @@
         "tailwindcss": "^2.0.2"
     },
     "devDependencies": {
+        "object-assign": "^4.1.1",
         "vue-template-compiler": "^2.6.12"
-    }
+    },
+    "browserslist": [
+        "defaults",
+        "last 5 versions",
+        "IE 11"
+    ]
 }

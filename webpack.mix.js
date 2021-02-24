@@ -14,14 +14,12 @@ let mix = require('laravel-mix');
 mix.options({
     terser: {
         terserOptions: {
-            keep_fnames: true
-        }
+            keep_fnames: true,
+        },
     }
 });
 
-mix.js([
-    'resources/js/export.js',
-], 'resources/dist/js/cookie-notice.min.js');
+mix.js(['resources/js/polyfills.js', 'resources/js/export.js'], 'resources/dist/js/cookie-notice.min.js');
 
 // mix.postCss('resources/css/ddm-cookie-notice.css', 'resources/dist/css', [
 //     require('tailwindcss'),

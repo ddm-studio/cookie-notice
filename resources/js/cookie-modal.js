@@ -7,7 +7,7 @@ const DISPLAY_SLEEP_TIME = 500;
 /**
  * Class for initializing the cookie modal and its actions.
  */
-export class CookieModal {
+export default class CookieModal {
     /**
      * Initializes the cookie modal if it is found on the page.
      *
