@@ -1,7 +1,5 @@
 'use strict';
 
-import { CookieConsent } from './cookie-consent';
-
 const DISPLAY_SLEEP_TIME = 500;
 
 /**
@@ -14,6 +12,7 @@ export default class CookieCover {
      */
     constructor(instance) {
         this._instance = instance;
+        this._instance.cookieCover = this;
 
         this._covers = document.querySelectorAll('.ddmcc');
 
@@ -77,5 +76,16 @@ export default class CookieCover {
                 cover.style.display = 'none';
             }, DISPLAY_SLEEP_TIME);
         }
+    }
+
+    hideConsented() {
+        if (this._covers.length === 0) {
+            return;
+        }
+
+        this._covers.forEach((cover) => {
+            if (this._instance.hasConsent(cover.dataset.classes))
+                this.hide(cover.id);
+        })
     }
 }

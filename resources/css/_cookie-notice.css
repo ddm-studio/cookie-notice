@@ -50,7 +50,7 @@
             @apply pb-1 lg:pb-2;
         }
 
-        & > input[type="checkbox"] + label {
+        & > input[type='checkbox'] + label {
             @apply inline-block;
         }
     }

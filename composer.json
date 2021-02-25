@@ -1,7 +1,7 @@
 {
     "name": "ddm-studio/cookie-notice",
     "type": "statamic-addon",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "Cookie Consent Tool for DDM pages.",
     "homepage": "https://github.com/ddm-studio/cookie-notice",
     "authors": [

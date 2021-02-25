@@ -1,7 +1,5 @@
 'use strict';
 
-import { CookieConsent } from './cookie-consent';
-
 const DISPLAY_SLEEP_TIME = 500;
 
 /**
@@ -15,6 +13,7 @@ export default class CookieModal {
      */
     constructor(instance) {
         this._instance = instance;
+        this._instance.cookieModal = this;
 
         // As there should only be one cookie modal we query only the first in the DOM
         this._modal = document.querySelector('.ddmcm');
@@ -109,5 +108,9 @@ export default class CookieModal {
         this._pushSettings();
 
         setTimeout(this.hide.bind(this), DISPLAY_SLEEP_TIME);
+
+        if (this._instance.cookieCover !== null) {
+            this._instance.cookieCover.hideConsented();
+        }
     }
 }

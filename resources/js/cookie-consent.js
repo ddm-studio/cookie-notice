@@ -22,7 +22,6 @@ export default class CookieConsent {
         };
         // this.debug = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
 
-        // TODO IE doesnt have a Object.assign function
         this._options = Object.assign({}, this._defaults, options);
 
         this._options.prefix = 'ddm-cookie-consent';
@@ -31,6 +30,9 @@ export default class CookieConsent {
         if (!this._options.prefix.endsWith('-')) {
             this._options.prefix += '-';
         }
+
+        this.cookieModal = null;
+        this.cookieCover = null;
     }
 
     /**
