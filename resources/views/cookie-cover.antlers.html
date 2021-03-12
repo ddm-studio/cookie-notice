@@ -1,4 +1,4 @@
-{{ if active }}
+{{ if enabled }}
 {{ if !{ cookie_notice:hasConsent cookieClasses="{ classes }" } }}
 <div class="ddmcc" id="{{ handle }}" data-classes="{{ classes }}" style="display: block;opacity: 100;{{ if bg_image }}background-image: url('{{ bg_image }}'){{ /if }}">
     <div class="ddmcc-pos">

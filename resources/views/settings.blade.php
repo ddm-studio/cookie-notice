@@ -1,12 +1,16 @@
 @extends('statamic::layout')
 
-@section('title','Cookie Notice')
-
 @section('content')
     <publish-form
-        title="Cookie Notice Settings"
-        action="{{ cp_route('ddm-studio.cookie-notice.index') }}"
-        :blueprint='@json($blueprint)'
-        :meta='@json($meta)'
-        :values='@json($values)'></publish-form>
+            title="{{ $title }}"
+            action="{{ $action }}"
+            :blueprint='@json($blueprint)'
+            :meta='@json($meta)'
+            :values='@json($values)'>
+    </publish-form>
+
+    @include('statamic::partials.docs-callout', [
+        'topic' => 'Cookie Notice',
+        'url' => 'https://github.com/ddm-studio/cookie-notice'
+    ])
 @stop

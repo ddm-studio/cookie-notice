@@ -1,69 +1,74 @@
 <?php
-    declare(strict_types=1);
+	declare(strict_types=1);
 
-    namespace DDM\CookieNotice\Http\Controllers;
+	namespace DDM\CookieNotice\Http\Controllers;
 
-    use DDM\CookieNotice\Utilities;
-    use Illuminate\Contracts\Foundation\Application;
-    use Illuminate\Contracts\View\Factory;
-    use Illuminate\Contracts\View\View;
-    use Illuminate\Http\Request;
-    use League\Flysystem\Util;
-    use Statamic\Facades\Blueprint;
-    use Statamic\Facades\File;
-    use Statamic\Facades\Site;
-    use Statamic\Facades\YAML;
-    use Statamic\Http\Controllers\CP\CpController;
-    use Statamic\Support\Arr;
+	use DDM\CookieNotice\CookieNoticeApp;
+	use DDM\CookieNotice\Settings\SettingsFields;
+	use Illuminate\Http\Request;
+	use Statamic\Facades\Blueprint;
+	use Statamic\Facades\File;
+	use Statamic\Facades\User;
+	use Statamic\Facades\YAML;
+	use Statamic\Http\Controllers\CP\CpController;
+	use Statamic\Support\Arr;
 
-    /**
-     * Class SettingsController
-     * @package DDM\DDMCookieNotice\Http\Controllers
-     * @author  dakralex
-     */
-    class SettingsController extends CpController {
+	/**
+	 * Class SettingsController
+	 * @package DDM\DDMCookieNotice\Http\Controllers
+	 * @author  dakralex
+	 */
+	class SettingsController extends CpController {
 
-        protected $locale;
-        protected $configurationFile;
+		protected $locale;
+		protected string $configurationFile;
 
-        public function __construct(Request $request) {
-            parent::__construct($request);
+		public function __construct(Request $request) {
+			parent::__construct($request);
 
-            $this->locale = Utilities::getLocale();
-            $this->configurationFile = 'content/ddm_cookie_notice_' . $this->locale . '.yaml';
-        }
+			$this->locale = CookieNoticeApp::getLocale();
+			$this->configurationFile = 'content/cookie_notice_' . $this->locale . '.yaml';
+		}
 
-        public function index() {
-            $blueprint = $this->getBlueprint();
+		public function index() {
+			// No access if the user doesn't have the right permissions to show them
+			abort_unless(User::current()->can('configure settings'), 403);
 
-            $fields = $blueprint->fields();
-            $values = collect(YAML::file(__DIR__ . '/../' . $this->configurationFile)->parse())
-                ->merge(YAML::file(base_path($this->configurationFile))->parse())
-                ->all();
-            $fields = $fields->addValues($values);
-            $fields = $fields->preProcess();
+			$blueprint = $this->getBlueprint();
 
-            return view('cookie-notice::settings', [
-                'blueprint' => $blueprint->toPublishArray(),
-                'values' => $fields->values(),
-                'meta' => $fields->meta()
-            ]);
-        }
+			$fields = $blueprint
+				->fields()
+				->addValues(YAML::file(base_path($this->configurationFile))->parse())
+				->preProcess();
 
-        public function update(Request $request) {
-            $blueprint = $this->getBlueprint();
+			return view(CookieNoticeApp::NAMESPACE . '::settings', [
+				'title' => __(CookieNoticeApp::NAMESPACE . '::cp.settings_title'),
+				'action' => cp_route(CookieNoticeApp::NAMESPACE . '.settings.index'),
+				'blueprint' => $blueprint->toPublishArray(),
+				'values' => $fields->values(),
+				'meta' => $fields->meta()
+			]);
+		}
 
-            $fields = $blueprint->fields()->addValues($request->all());
+		public function update(Request  $request) {
+			// No access if the user doesn't have the right permissions to show them
+			abort_unless(User::current()->can('configure settings'), 403);
 
-            $fields->validate();
+			$blueprint = $this->getBlueprint();
 
-            $values = Arr::removeNullValues($fields->process()->values()->all());
+			$fields = $blueprint->fields()->addValues($request->all());
 
-            File::put(base_path($this->configurationFile), YAML::dump($values));
-        }
+			$fields->validate();
 
-        protected function getBlueprint(): \Statamic\Fields\Blueprint {
-            return Blueprint::make()->setContents(YAML::file(__DIR__ . '/../../../resources/blueprints/cookie-notice-settings.yaml')->parse());
-        }
+			$values = Arr::removeNullValues($fields->process()->values()->all());
 
-    }
+			File::put(base_path($this->configurationFile), YAML::dump($values));
+		}
+
+		protected function getBlueprint(): \Statamic\Fields\Blueprint {
+			return Blueprint::make()
+				->setContents(SettingsFields::getSettings());
+			//return Blueprint::make()->setContents(YAML::file(__DIR__ . '/../../../resources/blueprints/cookie-notice-settings.yaml')->parse());
+		}
+
+	}

@@ -3,12 +3,11 @@
 
     namespace DDM\CookieNotice\Tags;
 
-    use DDM\CookieNotice\Utilities;
+    use DDM\CookieNotice\CookieNoticeApp;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Contracts\View\View;
     use JShrink\Minifier;
-    use Statamic\Facades\Site;
     use Statamic\Facades\YAML;
     use Statamic\Tags\Tags;
 
@@ -23,7 +22,7 @@
         protected $configurationFile;
 
         public function initialize() {
-            $this->locale = Utilities::getLocale();
+            $this->locale = CookieNotice::getLocale();
             $this->configurationFile = 'content/ddm_cookie_notice_' . $this->locale . '.yaml';
         }
 
@@ -40,7 +39,7 @@
 
             $this->injectLoadScript($data);
 
-            return view('cookie-notice::cookie-modal', collect($data));
+            return view(CookieNoticeApp::NAMESPACE . '::cookie-modal', collect($data));
         }
 
         /**
@@ -103,7 +102,7 @@
             // Add cover-specific variables into view data
             $data = array_merge($data, $cover);
 
-            return view('cookie-notice::cookie-cover', collect($data));
+            return view(CookieNoticeApp::NAMESPACE . '::cookie-cover', collect($data));
         }
 
         /**
@@ -143,7 +142,7 @@
             $data['load_code'] .= 'document.addEventListener("DOMContentLoaded",function(){';
 
             // Add pre-compiled script and after its load call _ddmCCLoad
-            $data['load_code'] .= 'var a=document.createElement("script");a.setAttribute("src","/vendor/ddm-studio/cookie-notice/js/cookie-notice.min.js");a.addEventListener(\'load\', _ddmCCLoad);document.body.appendChild(a);';
+            $data['load_code'] .= 'var a=document.createElement("script");a.setAttribute("src","/vendor/' . CookieNoticeApp::NAMESPACE . '/js/cookie-notice.min.js");a.addEventListener(\'load\', _ddmCCLoad);document.body.appendChild(a);';
 
             $data['load_code'] .= '});</script>';
         }
