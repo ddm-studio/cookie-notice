@@ -1,4 +1,4 @@
-active: true
+enabled: true
 classes:
   -
     title: 'Essential cookies'
