@@ -31,8 +31,8 @@
     },
     "minimum-stability": "beta",
     "require": {
-        "php": "^7.3.4",
-        "statamic/cms": "3.0.*",
+        "php": "^7.4 || ^8.0",
+        "statamic/cms": "^3.0",
         "tedivm/jshrink": "^1.4"
     }
 }
